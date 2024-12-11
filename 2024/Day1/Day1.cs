@@ -11,11 +11,11 @@
     {
       while((line  = fs.ReadLine()) != null){
         var splittedVals = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        // sorted insertion? 
         leftList.Add(int.Parse(splittedVals[0].Trim()));
         rightList.Add(int.Parse(splittedVals[1].Trim()));
       }
     }
+
     leftList.Sort();
     rightList.Sort();
     Console.WriteLine("Problem 1:");

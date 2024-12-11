@@ -1,34 +1,27 @@
-﻿public class Day10
+﻿using AdventOfCode.Common;
+
+public class Day10
 {
-  public static void Main(string[] args)
-  { 
-    var fileName = "input.test.txt";
-    string? line = string.Empty;
-    var map = new List<int[]>();
-    
-    using (var fs = File.OpenText(fileName))
+    public static void Main(string[] args)
     {
-      while((line  = fs.ReadLine()) != null){
-         var intLine = line.Select(x => x - 48).ToArray();
-         map.Add(intLine!);
-      }
+        var map = Parsers.GetTwoDimensionalIntegerArray();
+
+        Console.WriteLine("Problem 1:");
+        Console.WriteLine(Problem1(map));
+
+        Console.WriteLine("----");
+
+        Console.WriteLine("Problem 2:");
+        Console.WriteLine(Problem2(map));
     }
 
-    Console.WriteLine("Problem 1:");
-    Console.WriteLine(Problem1(map.ToArray()));
-    Console.WriteLine("----");
-
-    Console.WriteLine("Problem 2:");
-    Console.WriteLine(Problem2(map.ToArray()));
-  }
-
-  public static int Problem1(int[][]  map)
-  {
+    public static int Problem1(int[][] map)
+    {
         var count = 0;
-        HashSet<(int, int)> store = new HashSet<(int, int)> ();
+        HashSet<(int, int)> store = new HashSet<(int, int)>();
         for (var i = 0; i < map.Length; i++)
         {
-            for(var j = 0; j < map[i].Length; j++)
+            for (var j = 0; j < map[i].Length; j++)
             {
                 if (map[i][j] == 0)
                 {
@@ -39,14 +32,14 @@
             }
         }
 
-
         return count;
-  }
+    }
 
     public static int Problem2(int[][] map)
     {
         var rating = 0;
         HashSet<(int, int)> store = new HashSet<(int, int)>();
+
         for (var i = 0; i < map.Length; i++)
         {
             for (var j = 0; j < map[i].Length; j++)
@@ -58,11 +51,10 @@
             }
         }
 
-
         return rating;
     }
 
-    private static int CollectTrailheadCount(int[][] map, int currentValue, int positionX, int positionY, HashSet<(int,int)> store) 
+    private static int CollectTrailheadCount(int[][] map, int currentValue, int positionX, int positionY, HashSet<(int, int)> store)
     {
         if (positionX < 0 || positionX >= map.Length || positionY < 0 || positionY >= map[positionX].Length)
         {
@@ -80,8 +72,8 @@
             return 1;
         }
 
-        return CollectTrailheadCount(map, currentValue + 1, positionX + 1, positionY, store) + 
-        CollectTrailheadCount(map, currentValue + 1, positionX - 1, positionY, store) + 
+        return CollectTrailheadCount(map, currentValue + 1, positionX + 1, positionY, store) +
+        CollectTrailheadCount(map, currentValue + 1, positionX - 1, positionY, store) +
         CollectTrailheadCount(map, currentValue + 1, positionX, positionY + 1, store) +
         CollectTrailheadCount(map, currentValue + 1, positionX, positionY - 1, store);
     }
