@@ -1,33 +1,25 @@
-﻿public class Day6
+﻿using AdventOfCode.Common;
+public class Day6
 {
-  public static void Main(string[] args)
-  { 
-    var fileName = "input.test.txt";
-    string? line = string.Empty;
-    var map = new List<char[]>();
-    
-    using (var fs = File.OpenText(fileName))
+    public static void Main(string[] args)
     {
-      while((line  = fs.ReadLine()) != null){
-         map.Add(line.ToCharArray());
-      }
+        var map = Parsers.GetTwoDimensionalCharArray();
+
+        Console.WriteLine("Problem 1:");
+        Console.WriteLine(Problem1(map));
+        Console.WriteLine("----");
+
+        Console.WriteLine("Problem 2:");
+        Console.WriteLine(Problem2(map));
     }
 
-    Console.WriteLine("Problem 1:");
-    Console.WriteLine(Problem1(map.ToArray()));
-    Console.WriteLine("----");
-
-    Console.WriteLine("Problem 2:");
-    Console.WriteLine(Problem2(map.ToArray()));
-  }
-
-  public static int Problem1(char[][]  map)
-  {
+    public static int Problem1(char[][] map)
+    {
         (int x, int y) = GetStartPosition(map);
         var direction = Direction.TOP;
         var storeOfVisitedPlaces = new HashSet<string>();
-    
-        while(1 == 1)
+
+        while (1 == 1)
         {
             (int posUpdatesX, int posUpdatesY) = Directions[direction];
             var tmpX = posUpdatesX + x;
@@ -48,11 +40,12 @@
                 y = tmpY;
             }
         }
-    
-        return storeOfVisitedPlaces.Count + 1;
-  }
 
-    private static (int, int) GetStartPosition(char[][] map) { 
+        return storeOfVisitedPlaces.Count + 1;
+    }
+
+    private static (int, int) GetStartPosition(char[][] map)
+    {
         for (var i = 0; i < map.Length; i++)
         {
             for (var j = 0; j < map[i].Length; j++)
@@ -66,19 +59,20 @@
         return (-1, -1);
     }
 
-  public static int Problem2(char[][] map){
+    public static int Problem2(char[][] map)
+    {
         (int startX, int startY) = GetStartPosition(map);
         var storeOfVisitedPlaces = new HashSet<string>();
         var sum = 0;
 
         int x = startX;
         int y = startY;
-        
-        for(var i = 0; i < map.Length; i++)
+
+        for (var i = 0; i < map.Length; i++)
         {
-            for(var k = 0; k < map[i].Length; k++)
+            for (var k = 0; k < map[i].Length; k++)
             {
-                if (map[i][k] != '#' && (i != startX || k != startY ))
+                if (map[i][k] != '#' && (i != startX || k != startY))
                 {
                     map[i][k] = '#';
 
@@ -97,8 +91,8 @@
     private static bool CanGoOut(char[][] map, int x, int y, Direction direction)
     {
         var visitedPlaces = new HashSet<string>();
-        
-        while(1 == 1)
+
+        while (1 == 1)
         {
             (int posUpdatesX, int posUpdatesY) = Directions[direction];
             var tmpX = posUpdatesX + x;
@@ -130,8 +124,10 @@
 
     private static void PrintWithObst(char[][] map, int x, int y)
     {
-        for (var i = 0; i < map.Length; i++) {
-            for (var k = 0; k < map[i].Length; k++) { 
+        for (var i = 0; i < map.Length; i++)
+        {
+            for (var k = 0; k < map[i].Length; k++)
+            {
                 if (x == i && k == y)
                 {
                     Console.Write('O');
@@ -159,7 +155,7 @@
             case Direction.LEFT:
                 return Direction.TOP;
         }
-        return direction; 
+        return direction;
     }
 
     enum Direction
