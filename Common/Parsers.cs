@@ -21,5 +21,8 @@ public class Parsers
             Select(x => x.ToCharArray()).ToArray();
     }
 
-
+    public static string[] ReadAllLines()
+    {
+        return File.ReadAllLines(Constants.InputFilePath);
+    }
 }
