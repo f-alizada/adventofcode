@@ -1,33 +1,26 @@
-﻿public class Day8
+﻿using AdventOfCode.Common;
+
+public class Day8
 {
-  public static void Main(string[] args)
-  { 
-    var fileName = "input.test.txt";
-    string? line = string.Empty;
-    var map = new List<char[]>();
-    
-    using (var fs = File.OpenText(fileName))
+    public static void Main(string[] args)
     {
-          while((line  = fs.ReadLine()) != null){
-                map.Add(line.ToCharArray());
-          }
+        var map = Parsers.GetTwoDimensionalCharArray();
+
+        Console.WriteLine("Problem 1:");
+        Console.WriteLine(Problem1(map));
+        Console.WriteLine("----");
+
+        Console.WriteLine("Problem 2:");
+        Console.WriteLine(Problem2(map));
     }
 
-    Console.WriteLine("Problem 1:");
-    Console.WriteLine(Problem1(map.ToArray()));
-    Console.WriteLine("----");
-
-    Console.WriteLine("Problem 2:");
-    Console.WriteLine(Problem2(map.ToArray()));
-  }
-
-  public static int Problem1(char[][] map)
-  {
+    public static int Problem1(char[][] map)
+    {
         // collect pairs
         var pairs = new Dictionary<char, List<(int, int)>>();
-        for (var i = 0; i < map.Length; i++) 
+        for (var i = 0; i < map.Length; i++)
         {
-            for (var k = 0; k < map[i].Length; k++) 
+            for (var k = 0; k < map[i].Length; k++)
             {
                 if (map[i][k] == '.')
                 {
@@ -49,24 +42,24 @@
         {
             for (var i = 0; i < pair.Count; i++)
             {
-                for(var j = i + 1; j < pair.Count; j++)
+                for (var j = i + 1; j < pair.Count; j++)
                 {
                     var differenceX = pair[i].Item1 - pair[j].Item1;
                     var differenceY = pair[i].Item2 - pair[j].Item2;
 
-                    var antinode1PositionX = pair[i].Item1 - 2*differenceX;
-                    var antinode1Positiony = pair[i].Item2 - 2*differenceY;
-                    
-                    if (antinode1PositionX >= 0 && 
-                        antinode1PositionX <= map.Length - 1 && 
+                    var antinode1PositionX = pair[i].Item1 - 2 * differenceX;
+                    var antinode1Positiony = pair[i].Item2 - 2 * differenceY;
+
+                    if (antinode1PositionX >= 0 &&
+                        antinode1PositionX <= map.Length - 1 &&
                         antinode1Positiony >= 0 &&
                         antinode1Positiony <= map[antinode1PositionX].Length - 1)
                     {
                         uniqueVisits.Add((antinode1PositionX, antinode1Positiony));
                     }
 
-                    var antinode2PositionX = pair[j].Item1 + 2*differenceX;
-                    var antinode2Positiony = pair[j].Item2 + 2*differenceY;
+                    var antinode2PositionX = pair[j].Item1 + 2 * differenceX;
+                    var antinode2Positiony = pair[j].Item2 + 2 * differenceY;
 
                     if (antinode2PositionX >= 0 &&
                         antinode2PositionX <= map.Length - 1 &&
