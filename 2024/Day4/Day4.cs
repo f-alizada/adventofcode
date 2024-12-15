@@ -29,7 +29,7 @@ public class Day4
             {
                 if (xmas[i][k] == 'X')
                 {
-                    foreach (var direction in Directions.Keys)
+                    foreach (Directions direction in Directions.GetValues(typeof(Directions)))
                     {
                         sum += XmasFinder(xmas, i, k, 'X', direction);
                     }
@@ -41,7 +41,7 @@ public class Day4
     }
 
 
-    private static int XmasFinder(char[][] xmas, int row, int column, char findChar, Direction direction)
+    private static int XmasFinder(char[][] xmas, int row, int column, char findChar, Directions direction)
     {
         if (row < 0 || row > xmas.Length - 1)
         {
@@ -64,20 +64,9 @@ public class Day4
         }
 
         var nextChar = Steps[findChar];
-        (int x, int y) = Directions[direction];
+        (int x, int y) = direction.GetDirectionCoordinates();
         return XmasFinder(xmas, row + x, column + y, nextChar, direction);
     }
-
-    private readonly static Dictionary<Direction, (int, int)> Directions = new Dictionary<Direction, (int, int)>(){
-    { Direction.TOP, (-1, 0)},
-    { Direction.DOWN, (1, 0)},
-    { Direction.LEFT, (0, -1)},
-    { Direction.RIGHT, (0, 1)},
-    { Direction.TOPRIGHT, (-1, 1)},
-    { Direction.TOPLEFT, (-1, -1)},
-    { Direction.DOWNLEFT, (1, -1)},
-    { Direction.DOWNRIGHT, (1, 1)}
-  };
 
 
     public static int Problem2(char[][] xmas)
@@ -89,10 +78,10 @@ public class Day4
             {
                 if (xmas[i][k] == 'A')
                 {
-                    var dr = XmasFinder(xmas, i - 1, k - 1, 'M', Direction.DOWNRIGHT);
-                    var dl = XmasFinder(xmas, i - 1, k + 1, 'M', Direction.DOWNLEFT);
-                    var tr = XmasFinder(xmas, i + 1, k - 1, 'M', Direction.TOPRIGHT);
-                    var tl = XmasFinder(xmas, i + 1, k + 1, 'M', Direction.TOPLEFT);
+                    var dr = XmasFinder(xmas, i - 1, k - 1, 'M', Directions.DOWNRIGHT);
+                    var dl = XmasFinder(xmas, i - 1, k + 1, 'M', Directions.DOWNLEFT);
+                    var tr = XmasFinder(xmas, i + 1, k - 1, 'M', Directions.TOPRIGHT);
+                    var tl = XmasFinder(xmas, i + 1, k + 1, 'M', Directions.TOPLEFT);
                     if (dr + dl + tr + tl == 2)
                     {
                         sum++;
@@ -103,16 +92,4 @@ public class Day4
 
         return sum;
     }
-}
-
-enum Direction
-{
-    TOP,
-    DOWN,
-    RIGHT,
-    LEFT,
-    TOPLEFT,
-    TOPRIGHT,
-    DOWNLEFT,
-    DOWNRIGHT
 }
