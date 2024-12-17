@@ -13,7 +13,7 @@ public enum Directions
 
 public static class DirectionsExtensions
 {
-    public static (int, int) GetDirectionCoordinates(this Directions direction)
+    public static (int x, int y) GetDirectionCoordinates(this Directions direction)
     {
         return direction switch
         {
@@ -25,6 +25,30 @@ public static class DirectionsExtensions
             Directions.TOPRIGHT => (-1, 1),
             Directions.DOWNLEFT => (1, -1),
             Directions.DOWNRIGHT => (1, 1),
+            _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
+        };
+    }
+
+    public static Directions TurnRight(this Directions direction)
+    {
+        return direction switch
+        {
+            Directions.TOP => Directions.RIGHT,
+            Directions.DOWN => Directions.LEFT,
+            Directions.LEFT => Directions.TOP,
+            Directions.RIGHT => Directions.DOWN,
+            _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
+        };
+    }
+
+    public static Directions TurnLeft(this Directions direction)
+    {
+        return direction switch
+        {
+            Directions.TOP => Directions.LEFT,
+            Directions.DOWN => Directions.RIGHT,
+            Directions.LEFT => Directions.DOWN,
+            Directions.RIGHT => Directions.TOP,
             _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
         };
     }
