@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31903.59
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11222.15 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2024", "2024", "{EFDA92FD-CEB7-49E9-B902-133DB61A6A2F}"
 EndProject
@@ -50,6 +50,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2025", "2025", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day2", "2025\Day2\Day2.csproj", "{F6B9D144-E60C-4D38-BA4B-BAB72F74DB66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day3", "2025\Day3\Day3.csproj", "{633655DC-1348-48F4-BE34-4C8BB3340063}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +143,10 @@ Global
 		{F6B9D144-E60C-4D38-BA4B-BAB72F74DB66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6B9D144-E60C-4D38-BA4B-BAB72F74DB66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6B9D144-E60C-4D38-BA4B-BAB72F74DB66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{633655DC-1348-48F4-BE34-4C8BB3340063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{633655DC-1348-48F4-BE34-4C8BB3340063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{633655DC-1348-48F4-BE34-4C8BB3340063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{633655DC-1348-48F4-BE34-4C8BB3340063}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -166,6 +172,7 @@ Global
 		{1EDFED14-856C-4189-8E23-EE9833C5083A} = {EFDA92FD-CEB7-49E9-B902-133DB61A6A2F}
 		{1EDFED14-855C-4189-8E23-EE9833C5083A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{F6B9D144-E60C-4D38-BA4B-BAB72F74DB66} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{633655DC-1348-48F4-BE34-4C8BB3340063} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A75D2D0E-FB87-4008-8715-6FE702A788FA}
